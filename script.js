@@ -3,7 +3,8 @@
 
 let level = 0,
     music = [],
-    diff = 0;
+    diff = 0,
+    inter = null;
 
 const gameOptDiv = document.querySelectorAll('.game-option input'),
     btn1 = document.querySelector('.board-item-1'),
@@ -17,6 +18,7 @@ const gameOptDiv = document.querySelectorAll('.game-option input'),
 
 const gameOver = () => {
     res.textContent = 'game over on level:' + level;
+    clearInterval(inter);
     music = [];
     level = 0;
 }
@@ -38,7 +40,7 @@ const playBtn = (number, userPlay = true) => {
 
 const generateLevel = () => {
     let curCount = 0;
-    const inter = setInterval(() => {
+    inter = setInterval(() => {
         const btnNumber = 1 + Math.floor(Math.random() * 4);
         playBtn(btnNumber, false);
         curCount++;
